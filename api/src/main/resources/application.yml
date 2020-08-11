@@ -1,0 +1,28 @@
+server:
+  port: 9999
+  servlet:
+    # 统一接口访问前缀
+    context-path: /base/frame/main
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    # 2020-06-28T07:59:34.000+00:00 => 2020-06-28 07:59:34
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 接口返回的实体类里的null值字段将不会返回
+    default-property-inclusion: non_null
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/base/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+logging:
+  config: classpath:logback.xml
+  level:
+    com:
+      base:
+        frame:
+          dao: DEBUG
+          service: DEBUG

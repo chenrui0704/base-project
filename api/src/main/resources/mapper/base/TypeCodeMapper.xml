@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.frame.dao.base.TypeCodeMapper">
+
+    <select id="query" resultType="com.base.frame.entity.base.TypeCode">
+        select * from type_code
+        <where>
+            <if test="id!=null ">
+                and id = #{id}
+            </if>
+            <if test="nameOrCode!=null  and nameOrCode!=''">
+                and (code like concat('%',#{nameOrCode},'%') or name like concat('%',#{nameOrCode},'%'))
+            </if>
+            <if test="node!=null  and node!=''">
+                and node = #{node}
+            </if>
+            <if test="name!=null  and name!=''">
+                and name = #{name}
+            </if>
+            <if test="code!=null  and code!=''">
+                and code = #{code}
+            </if>
+            <if test="description!=null  and description!=''">
+                and description = #{description}
+            </if>
+            <if test="createTime!=null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createId!=null ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime!=null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateId!=null ">
+                and update_id = #{updateId}
+            </if>
+            <if test="state!=null ">
+                and state = #{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" keyColumn="id" parameterType="com.base.frame.entity.base.TypeCode">
+        INSERT INTO type_code
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            node,
+            name,
+            code,
+            description,
+            create_time,
+            create_id,
+            state,
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            #{node},
+            #{name},
+            #{code},
+            #{description},
+            #{createTime},
+            #{createId},
+            #{state},
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.base.frame.entity.base.TypeCode">
+        update  type_code
+        <set>
+            <if test="name!=null   and name!='' ">
+                name = #{name},
+            </if>
+            <if test="code!=null   and code!='' ">
+                code = #{code},
+            </if>
+            <if test="description!=null   and description!='' ">
+                description = #{description},
+            </if>
+            <if test="updateTime!=null   ">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateId!=null   ">
+                update_id = #{updateId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateChildNode" parameterType="com.base.frame.entity.base.TypeCode">
+        update type_code set node = #{code} where node = #{oldNode}
+    </update>
+
+    <update id="invalid" parameterType="com.base.frame.entity.base.TypeCode">
+        update type_code set state = 0 where id = #{id}
+    </update>
+
+    <update id="invalidChildNode" parameterType="com.base.frame.entity.base.TypeCode">
+        update type_code set state = 0 where node = #{code}
+    </update>
+
+</mapper>
+

@@ -1,0 +1,7 @@
+base:
+  config:
+    aesKey: 3b3w6dw10efs5h18
+    # 检查token时效性, true = 检查。 false则不对token的有效期做验证
+    checkTokenTime: true
+    # token有效期, (单位: 天)
+    tokenTimeLimit: 1
