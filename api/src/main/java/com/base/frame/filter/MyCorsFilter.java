@@ -15,9 +15,10 @@ import java.util.List;
 @Component
 public class MyCorsFilter {
 
-    private static List<String> allowedOriginsList = new ArrayList(){{
+    private List<String> allowedOriginsList = new ArrayList(){{
         add("http://127.0.0.1:8280");
         add("http://localhost:8280");
+        add("http://192.168.17.195:8280");
     }};
 
     @Bean

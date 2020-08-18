@@ -48,7 +48,6 @@
             name,
             code,
             description,
-            create_time,
             create_id,
             state,
         </trim>
@@ -58,7 +57,6 @@
             #{name},
             #{code},
             #{description},
-            #{createTime},
             #{createId},
             #{state},
         </trim>

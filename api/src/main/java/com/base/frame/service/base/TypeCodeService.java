@@ -31,7 +31,6 @@ public class TypeCodeService {
 
     public MyResult save(TypeCode typeCode){
         if(0 == typeCode.getId()){
-            typeCode.setCreateTime(new Date());
             typeCodeMapper.insert(typeCode);
         }else{
             typeCode.setUpdateTime(new Date());

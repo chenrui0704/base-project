@@ -3,7 +3,6 @@ server:
   servlet:
     # 统一接口访问前缀
     context-path: /base/frame/main
-
 spring:
   profiles:
     active: dev
@@ -12,12 +11,15 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     # 接口返回的实体类里的null值字段将不会返回
     default-property-inclusion: non_null
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/base/*.xml
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
+
 logging:
   config: classpath:logback.xml
   level:
