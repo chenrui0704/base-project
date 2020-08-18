@@ -10,8 +10,8 @@ import 'iview/dist/styles/iview.css';
 import './index.less';
 import '@/assets/icons/iconfont.css';
 import axios from './config/axios';
-import address from './config/address';
-import ajaxConfig from './config/ajaxConfig';
+import address from './config/global/address';
+import ajaxConfig from './config/global/ajax';
 import cookie from 'js-cookie';
 
 Vue.use(iView, {
