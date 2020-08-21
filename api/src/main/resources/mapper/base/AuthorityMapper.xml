@@ -9,6 +9,13 @@
         where t.node = 'menu' and t.state = 1
     </select>
 
+
+    <select id="queryUserAuthorityByRoleId" resultType="string">
+        select code from type_code where id in (
+            select menu_id from role_menu_mapping where role_id = #{roleId}
+        ) and state = 1
+    </select>
+
     <insert id="save">
         insert role_menu_mapping(role_id, menu_id)
         values 

@@ -21,8 +21,25 @@ public class UserController {
     }
 
     @RequestMapping("/query")
-    public MyResult query(){
-        return userService.query();
+    public MyResult query(@RequestBody User user){
+        return userService.query(user);
     }
+
+    @RequestMapping("/save")
+    public MyResult save(@RequestBody User user){
+        return userService.save(user);
+    }
+
+    @RequestMapping("/updateUserState")
+    public MyResult updateUserState(@RequestBody User user){
+        return userService.updateUserState(user);
+    }
+
+    // resetPassword
+    @RequestMapping("/resetPassword")
+    public MyResult resetPassword(@RequestBody User user){
+        return userService.resetPassword(user);
+    }
+
 
 }

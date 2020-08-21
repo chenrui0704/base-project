@@ -25,10 +25,9 @@ let menuRouter = [
         meta: {icon: 'logo-buffer', title: '基础维护'},
         component: Main,
         children: [
-            {path: 'type_code', name: 'type_code', meta: {icon: 'md-arrow-dropdown-circle', title: '类型代码'}, component: () => import('@/serivce-view/base/typeCode/TypeCode.vue')},
-            {path: 'codeManagement', name: 'codeManagement', meta: {icon: 'md-arrow-dropdown-circle', title: '代码管理'}, component: () => import('@/serivce-view/BasicMaintenance/CodeManagement.vue')},
-            {path: 'userManagement', name: 'userManagement', meta: {icon: 'md-trending-up', title: '用户管理'}, component: () => import('@/serivce-view/BasicMaintenance/UserManagement.vue')},
-            {path: 'authorityManagement', name: 'authorityManagement', meta: {icon: 'md-trending-up', title: '权限管理'}, component: () => import('@/serivce-view/base/authority/AuthorityManagement.vue')},
+            {access: 'Menu_TypeCode', path: 'type_code', name: 'type_code', meta: {icon: 'md-arrow-dropdown-circle', title: '类型代码'}, component: () => import('@/serivce-view/base/typeCode/TypeCode.vue')},
+            {access: 'Menu_Authorization', path: 'authorityManagement',  name: 'authorityManagement', meta: {icon: 'md-trending-up', title: '权限管理'}, component: () => import('@/serivce-view/base/authority/AuthorityManagement.vue')},
+            {access: 'Menu_UserManagement', path: 'user_manager', name: 'user_manager', meta: {icon: 'md-arrow-dropdown-circle', title: '用户管理'}, component: () => import('@/serivce-view/base/userManage/UserManage.vue')},
         ]
     },
     {

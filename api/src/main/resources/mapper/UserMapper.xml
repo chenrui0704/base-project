@@ -3,12 +3,76 @@
 <mapper namespace="com.base.frame.dao.UserMapper">
 
   <select id="query" resultType="com.base.frame.entity.User">
-    select id, username, login_name, create_id, create_time
+    select id, username, login_name, role_id, state, phone, email, identity_number,
+    (select name from type_code where id = role_id and state = 1) as roleName
     from users
   </select>
 
   <select id="queryByLoginName" resultType="com.base.frame.entity.User">
-    select * from users where login_name = #{loginName}
+    select id, username, login_name, role_id, state, phone, email, identity_number, password,
+    (select name from type_code where id = role_id and state = 1) as roleName
+    from users
+    where login_name = #{loginName} and state = 1
   </select>
 
+  <insert id="insert" parameterType="com.base.frame.entity.User">
+    INSERT INTO users
+    <trim prefix="(" suffixOverrides="," suffix=")">
+      username,
+      login_name,
+      password,
+      create_id,
+      role_id,
+      phone,
+      email,
+      identity_number,
+    </trim>
+    VALUES
+    <trim prefix="(" suffixOverrides="," suffix=")">
+      #{username},
+      #{loginName},
+      #{password},
+      #{createId},
+      #{roleId},
+      #{phone},
+      #{email},
+      #{identityNumber},
+    </trim>
+  </insert>
+
+  <update id="updateUserState" parameterType="com.base.frame.entity.User">
+    update users set state = #{state} where id = #{id}
+  </update>
+
+  <update id="resetPassword" parameterType="com.base.frame.entity.User">
+    update users set password = #{password} where id = #{id}
+  </update>
+
+  <update id="updateById" parameterType="com.base.frame.entity.User">
+    update users
+    <set>
+      <if test="username!=null   and username!='' ">
+        username = #{username},
+      </if>
+      <if test="roleId!=null   ">
+        role_id = #{roleId},
+      </if>
+      <if test="phone!=null   and phone!='' ">
+        phone = #{phone},
+      </if>
+      <if test="email!=null   and email!='' ">
+        email = #{email},
+      </if>
+      <if test="identityNumber!=null   and identityNumber!='' ">
+        identity_number = #{identityNumber},
+      </if>
+      <if test="updateId!=null">
+        update_id = #{updateId},
+      </if>
+      <if test="updateTime!=null">
+        update_time = #{updateTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
 </mapper>

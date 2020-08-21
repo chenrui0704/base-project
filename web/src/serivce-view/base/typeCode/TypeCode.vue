@@ -24,18 +24,18 @@
         </Col>
 
         <Modal v-model="modal" title="新增类型" :mask-closable="false" :footer-hide="true" >
-            <Form ref="saveTypeCodeEntity" :model="saveTypeCodeEntity" :label-width="90" :rules="saveTypeCodeEntityRules">
+            <Form ref="typeCodeEntity" :model="typeCodeEntity" :label-width="90" :rules="typeCodeEntityRules">
                 <FormItem label="类型名称：" prop="name">
-                    <Input v-model="saveTypeCodeEntity.name" placeholder="请输入类型名称"></Input>
+                    <Input v-model="typeCodeEntity.name" placeholder="请输入类型名称"></Input>
                 </FormItem>
                 <FormItem label="类型代码：" prop="code">
-                    <Input v-model="saveTypeCodeEntity.code" placeholder="请输入类型代码"></Input>
+                    <Input v-model="typeCodeEntity.code" placeholder="请输入类型代码"></Input>
                 </FormItem>
                 <FormItem label="类型描述：" prop="description">
-                    <Input v-model="saveTypeCodeEntity.description"  placeholder="请输入类型描述..."></Input>
+                    <Input v-model="typeCodeEntity.description"  placeholder="请输入类型描述..."></Input>
                 </FormItem>
                 <FormItem label="类型节点：">
-                    <Input :disabled="true" v-model="saveTypeCodeEntity.node"></Input>
+                    <Input :disabled="true" v-model="typeCodeEntity.node"></Input>
                 </FormItem>
             </Form>
             <Row>
@@ -62,8 +62,8 @@
     })
     export default class TypeCode extends Vue{
         modal: boolean = false;
-        saveTypeCodeEntity: TypeCodeEntity = new TypeCodeEntity();
-        saveTypeCodeEntityRules: TypeCodeRules = new TypeCodeRules();
+        typeCodeEntity: TypeCodeEntity = new TypeCodeEntity();
+        typeCodeEntityRules: TypeCodeRules = new TypeCodeRules();
 
         nameOrCode: string = '';
         nodeNameOrCode: string = '';
@@ -79,7 +79,7 @@
         };
 
         openModal(node){
-            this.saveTypeCodeEntity.initialization(node);
+            this.typeCodeEntity.initialization(node);
             this.modal = true;
         };
 
@@ -136,25 +136,25 @@
         save(){
             let that = this;
             // @ts-ignore
-            that.$refs['saveTypeCodeEntity'].validate((valid) => {
+            that.$refs['typeCodeEntity'].validate((valid) => {
                 if(valid){
-                    that.saveTypeCodeEntity.createId = CookiesUtil.getUserId();
-                    that.saveRequest(that.saveTypeCodeEntity);
+                    that.typeCodeEntity.createId = CookiesUtil.getUserId();
+                    that.saveRequest(that.typeCodeEntity);
                 }
             });
         }
 
-        saveRequest(saveTypeCodeEntity: TypeCodeEntity){
+        saveRequest(typeCodeEntity: TypeCodeEntity){
             let that = this;
-            that.$ajax.post(that.$javaAddress + 'typeCode/save', saveTypeCodeEntity, that.$ajaxJsonConfig).then(r =>{
+            that.$ajax.post(that.$javaAddress + 'typeCode/save', typeCodeEntity, that.$ajaxJsonConfig).then(r =>{
                 let myResult: MyResult = r.data;
                 if(myResult.code === '1000'){
-                    that.search(saveTypeCodeEntity.node);
+                    that.search(typeCodeEntity.node);
                     that.modal = false;
                     that.$Message.info('保存成功');
                 }else{
                     that.$Message.error('保存失败, error:' + myResult.description);
-                    that.search(saveTypeCodeEntity.node);
+                    that.search(typeCodeEntity.node);
                 }
             });
         };

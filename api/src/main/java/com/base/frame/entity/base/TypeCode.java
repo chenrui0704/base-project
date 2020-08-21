@@ -2,7 +2,6 @@ package com.base.frame.entity.base;
 
 import java.util.Date;
 
-import com.base.frame.util.PageModel;
 import lombok.Data;
 
 @Data

@@ -82,7 +82,14 @@ export default {
       return list
     },
     menuList () {
-      return this.$store.getters.menuList
+        let menuList = this.$store.getters.menuList;
+        console.log(menuList);
+        menuList.forEach(x=>{
+            console.log(x);
+        })
+
+
+        return this.$store.getters.menuList;
     },
     local () {
       return this.$store.state.app.local

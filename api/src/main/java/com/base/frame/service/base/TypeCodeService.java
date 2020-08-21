@@ -3,8 +3,6 @@ package com.base.frame.service.base;
 import com.base.frame.dao.base.TypeCodeMapper;
 import com.base.frame.entity.base.TypeCode;
 import com.base.frame.util.MyResult;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,6 +9,8 @@ public interface AuthorityMapper {
 
     List<TypeCode> queryByRoleId(Integer roleId);
 
+    List<String> queryUserAuthorityByRoleId(Integer roleId);
+
     void deleteByRoleId(Integer roleId);
 
     void save(@Param("roleId") Integer roleId, @Param("menuIds") Integer [] menuIds);

@@ -33,6 +33,9 @@ export default {
                 if(data.code == 1000){
                     that.$cookie.set('token', data.data.token);
                     that.$cookie.set('user', data.data.user);
+                    that.$cookie.set('userAuthority', data.data.userAuthority);
+                    console.log(data);
+
                     this.$router.push({
                         name: this.$config.homeName
                     });
